@@ -1,0 +1,9 @@
+dash==4.4.1
+openai==3.37.0
+python-dotenv==1.2.4
+pillow==13.0.0
+astral==3.2
+requests==2.34.2
+tzdata
+gunicorn==26.2.0
+pytest==9.1.1

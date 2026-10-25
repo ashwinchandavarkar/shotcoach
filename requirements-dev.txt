@@ -1,0 +1,4 @@
+# Only needed to regenerate screenshots / report figures
+-r requirements.txt
+playwright
+pymupdf

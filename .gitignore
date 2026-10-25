@@ -1,0 +1,14 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+logs/
+.claude/
+joke.txt
+# Contains the author's friends' faces: kept out of the public repo.
+# report.html / slides.html / the review screenshot embed it and are submitted on Canvas instead.
+sample_photos/real_group_backlit_franconia.jpg
+docs/screenshots/09_review_full.png
+report.html
+slides.html
