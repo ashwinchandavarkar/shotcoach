@@ -292,13 +292,8 @@ def build_report() -> str:
         scale_rows += f'<tr><td>{label}</td><td class="n">{users * (runs_plan + runs_rev):,}</td><td class="n">{money(cost, 2)}</td></tr>'
 
     user_test = (f"<p>{USER_TEST}</p>" if USER_TEST else """
-<div class="callout red"><b>Real-user test: protocol ready, results pending.</b> The table below is filled in after the test. No results are invented in this report.</div>
-<table class="t"><tr><th>Measure</th><th>Without ShotCoach (friend uses camera as-is)</th><th>With Hand-off Card</th></tr>
-<tr><td>Time from handing over camera to a keeper shot</td><td>—</td><td>—</td></tr>
-<tr><td>Frames taken until a keeper</td><td>—</td><td>—</td></tr>
-<tr><td>Blind rating of best frame (1–10, 3 raters)</td><td>—</td><td>—</td></tr>
-<tr><td>"I would use this again" (friend)</td><td>—</td><td>—</td></tr></table>
-<p class="small">Protocol: the same friend photographs the author twice at the same spot within 10 minutes. Round 1 uses the camera on Auto. Round 2 uses the ShotCoach settings and the Hand-off Card on the phone. The order is swapped for a second friend. Photos are rated blind by three classmates.</p>""")
+<div class="callout red"><b>No independent field test was run.</b> The only real user so far is the author, using ShotCoach on their own trip photos (above) and on the scenarios in sections 4–5. The impact evidence in this section therefore comes from controlled experiments (Experiments C and D) and real-photo diagnoses, not from other people using the app. Per the rubric, this caps how strongly the impact claims can be made.</div>
+<p>The next step is a simple field protocol, ready to run on the next group trip. The same friend photographs the author twice at one spot within 10 minutes: round 1 on Auto, round 2 with the ShotCoach settings and Hand-off Card, with the order swapped for a second friend. Measures: time to a keeper shot, frames taken, and blind 1–10 ratings from three classmates.</p>""")
 
     return f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ShotCoach — Final Project Report</title><style>{REPORT_CSS}</style></head><body><div class="page">
@@ -308,7 +303,7 @@ def build_report() -> str:
   <table>
    <tr><td>Author</td><td><b>{AUTHOR}</b> · Yale SOM · AI for Managers, Final Project</td></tr>
    <tr><td>Code</td><td><a href="{REPO_URL}">{REPO_URL}</a></td></tr>
-   <tr><td>Live app</td><td>{f'<a href="{APP_URL}">{APP_URL}</a>' if APP_URL else 'Runs locally in about 3 minutes (see README). The hosted link will be added after deployment.'}</td></tr>
+   <tr><td>Live app</td><td>{f'<a href="{APP_URL}">{APP_URL}</a>' if APP_URL else 'Not hosted: graders run it locally (Option B). A clean clone with the .env one folder above was tested and starts in about 2 minutes (see README).'}</td></tr>
    <tr><td>Model</td><td>{R["model"]} via the course Portkey gateway · evaluation run {R["run_at"]}</td></tr>
   </table>
 </header>
@@ -485,7 +480,7 @@ def build_report() -> str:
 <details><summary class="small">Experiment C detail</summary><table class="t"><tr><th>Question</th><th>Calculator</th><th>Plain model (3 tries)</th><th>Mean error</th></tr>{c_rows}</table></details>
 <h3>Time and cost</h3>
 <ul>
-<li><b>{st.mean(plan_lat):.0f} seconds</b> on average from request to a complete plan (settings, steps, conditions, card), and about 10 s for a photo review. The alternative is searching for "settings for X", translating them into your camera's menus, and briefing a friend at the viewpoint, which in my experience takes several minutes while the light changes. Timing this against the app is part of the user test below.</li>
+<li><b>{st.mean(plan_lat):.0f} seconds</b> on average from request to a complete plan (settings, steps, conditions, card), and about 10 s for a photo review. The alternative is searching for "settings for X", translating them into your camera's menus, and briefing a friend at the viewpoint, which in my experience takes several minutes while the light changes. Comparing this against people using the app is the planned field test below.</li>
 <li><b>{money(avg_plan, 4)} per plan</b> and <b>{money(per_trip, 3)} per trip</b> in model cost (section 5), against $10.99 for PhotoPills or $20/month for ChatGPT Plus.</li>
 </ul>
 <h3>Real-photo evidence</h3>
@@ -504,7 +499,8 @@ def build_report() -> str:
  <li><b>EXIF is often missing.</b> Photos shared through chat apps lose their settings (as in this report's samples), so critiques are then inferred from the image alone.</li>
  <li><b>Milky Way position</b> (galactic-core altitude and azimuth) is not computed yet; only darkness and the moon are.</li>
  <li><b>The regex guard is brittle by nature.</b> One of {F["attacks_total"]} attacks passed it and was caught only by the LLM layer, and a novel phrasing could pass both.</li>
- <li><b>The real-user evidence is still small</b> (see section 7).</li>
+ <li><b>No independent user test yet.</b> Impact evidence is experimental plus the author's own use (see section 7).</li>
+ <li><b>Not hosted online.</b> It runs locally; hosting would also need per-user rate limits and a usage cap so a public URL can't drain the API budget.</li>
 </ul>
 <h3>With one more month</h3>
 <ol>
@@ -653,7 +649,7 @@ def build_slides() -> str:
    <li>Critic correctly found the real failures in my trip photos: backlight, a finger in frame, a clipped sign.</li>
    <li><b>{st.mean(plan_lat):.0f} s</b> to a full plan vs minutes of searching and menu-diving.</li>
    <li>Honest: with the formula spelled out, the plain model's math is accurate ({math_within}/{math_total}). The win is applying the right rule to <i>your</i> gear.</li>
-   <li class="muted">Real-user field test with trip friends: in progress.</li>
+   <li class="muted">Limitation: no independent user test yet. Evidence is experimental plus my own trip photos.</li>
   </ul></div>
  </div>
 </section>

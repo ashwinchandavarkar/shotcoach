@@ -2,7 +2,7 @@
 
 **Get the shot, even when you're the one in it.**
 
-> **Live app:** _coming soon (Render URL goes here)_
+> **Run locally** (no hosted version): follow the Quick start below. It takes about 2 minutes, and the app finds the `.env` in this folder or one folder above.
 
 ShotCoach is an AI photography coach. You describe a photo you want, or upload a sample photo. ShotCoach then gives you:
 
